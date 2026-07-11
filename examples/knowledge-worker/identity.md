@@ -1,3 +1,9 @@
+---
+updated: 2026-04-02
+stability: stable
+scope: identity
+---
+
 # Identity
 
 **Name:** Sarah Chen

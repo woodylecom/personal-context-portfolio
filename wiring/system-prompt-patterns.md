@@ -17,6 +17,8 @@ Paste the relevant portfolio content into your system prompt, wrapped in a clear
 You have context about the user above. Use it to inform your responses — their role, their projects, their communication style, their preferences. Don't reference this context explicitly unless asked. Just know them.
 ```
 
+Picking files ad hoc for a use case works, but if you want a general rule instead of re-deciding every time, see [`LOAD-PROTOCOL.md`](../LOAD-PROTOCOL.md) for the minimum load (identity + preferences-and-constraints + operational-boundaries + unknowns) plus task-based extras. The use-case patterns below are shortcuts derived from that same logic.
+
 ## Patterns by Use Case
 
 ### General Work Assistant
@@ -68,6 +70,25 @@ You help prepare for meetings. When given a meeting topic and attendees, use the
 
 You are a strategic thinking partner. Use the goals and priorities context to understand what the person is optimizing for. Use the decision log to understand how they think through decisions — match their reasoning style. When presenting options, frame tradeoffs the way they think about tradeoffs (see their stated preferences). Be direct and concise.
 ```
+
+### Higher-Stakes / Lower-Supervision Work (Optional Modules)
+
+For agents that act with more autonomy — drafting messages that go out under the user's name, or operating with less oversight than a simple Q&A assistant — layer the optional guardrail modules on top of whatever base pattern above fits the task:
+
+```
+<user_context>
+[identity.md]
+[communication-style.md]
+[voice-anti-examples.md]
+[operational-boundaries.md]
+</user_context>
+
+You are drafting on this person's behalf. Match their voice — avoid every pattern listed as a
+"don't" in the anti-examples file. Respect every rule in the operational boundaries file without
+exception, especially anything about drafts requiring review before they go out.
+```
+
+`voice-anti-examples.md` and `operational-boundaries.md` are optional modules (see `/templates`) — add them once filled out, and skip them for low-stakes, closely-supervised use cases where the extra context wouldn't change the output.
 
 ## Tips
 

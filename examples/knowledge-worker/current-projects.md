@@ -1,9 +1,15 @@
+---
+updated: 2026-07-09
+stability: evolving
+scope: current-projects
+---
+
 # Current Projects
 
 ## Async Messaging V2
 
 **Description:** Rebuilding our patient-provider messaging to support threaded conversations, attachments, and care team routing.
-**Status:** In Progress — backend done, frontend in active build, targeting end of Q2 launch.
+**Status:** In Progress — backend done, frontend in active build, targeting a mid-August launch.
 **My Role:** Product owner. Wrote the spec, running the sprints, managing the beta.
 **Key Collaborators:** James (eng lead), Maya (design), Dr. Okafor (clinical advisor for message triage logic).
 **What Done Looks Like:** Live in production with our three pilot health systems, message volume up 30% from current baseline, clinical staff satisfaction score above 4.0.

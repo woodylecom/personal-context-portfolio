@@ -1,3 +1,9 @@
+---
+updated: 2026-07-06
+stability: evolving
+scope: current-projects
+---
+
 # Current Projects
 
 ## AI/ML Team Buildout
@@ -20,7 +26,7 @@
 
 ## Engineering Hiring Sprint
 
-**Description:** We have 12 open positions across four teams. Need to fill them before Q3 to hit product commitments.
+**Description:** We have 12 open positions across four teams. Need to fill them by end of Q3 to hit Q4 product commitments.
 **Status:** In progress — 5 filled, 7 open, pipeline is thin for senior roles.
 **My Role:** Final interviewer on all senior hires, pipeline strategy, employer brand.
 **Key Collaborators:** Recruiting team, all six leads.

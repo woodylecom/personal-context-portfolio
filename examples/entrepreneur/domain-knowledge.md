@@ -1,3 +1,9 @@
+---
+updated: 2026-03-22
+stability: stable
+scope: domain-knowledge
+---
+
 # Domain Knowledge
 
 ## Areas of Expertise

@@ -1,3 +1,9 @@
+---
+updated: 2026-04-05
+stability: stable
+scope: identity
+---
+
 # Identity
 
 **Name:** Jordan Reeves

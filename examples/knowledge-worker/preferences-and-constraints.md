@@ -1,3 +1,9 @@
+---
+updated: 2026-04-15
+stability: stable
+scope: preferences-and-constraints
+---
+
 # Preferences and Constraints
 
 ## Hard Constraints

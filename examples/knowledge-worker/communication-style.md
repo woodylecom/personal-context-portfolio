@@ -1,3 +1,9 @@
+---
+updated: 2026-04-02
+stability: stable
+scope: communication-style
+---
+
 # Communication Style
 
 ## Overall Style

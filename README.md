@@ -23,6 +23,8 @@ Ten files, each covering a different dimension of who you are and how you work:
 | `domain-knowledge.md` | What you know that a general-purpose AI doesn't |
 | `decision-log.md` | How you make decisions, with real examples |
 
+These ten are a complete, usable portfolio on their own. Four **optional modules** — `unknowns.md`, `voice-anti-examples.md`, `operational-boundaries.md`, `current-state.md` — add more precision once you want it; see [`LOAD-PROTOCOL.md`](LOAD-PROTOCOL.md) for what they cover and when to load them.
+
 ## Design Principles
 
 **Markdown-first.** Every AI system on earth can read markdown. It's the universal interchange format for context. Not JSON, not PDFs, not databases. Markdown files that are human-readable AND machine-readable.
@@ -33,32 +35,55 @@ Ten files, each covering a different dimension of who you are and how you work:
 
 **Portable across everything.** Works with Claude, works with ChatGPT, works with OpenClaw agents, works with whatever comes next. No vendor lock-in. It's just files.
 
-## Two Ways to Build Yours
+**Redact before you share.** Decide your redaction tier — full names, initials, or roles-only — before you fill out `team-and-relationships.md`, and before you fork this into anything that isn't strictly private. See "Redaction Tiers" in [`templates/team-and-relationships.md`](templates/team-and-relationships.md).
 
-**Use the web app.** A purpose-built interviewer agent walks you through the whole process. You answer questions, it drafts your files, you correct what it gets wrong, and you walk away with your complete portfolio. Zero setup, zero friction. → [Link to app]
+**Maintained, not archived.** A portfolio you write once and never touch is worse than not having one — a stale file gets acted on with confidence instead of prompting a question. See [`MAINTENANCE.md`](MAINTENANCE.md) for update cadence and what to do when the conversation and a file disagree.
 
-**Do it yourself.** Fork this repo and use the templates in `/templates`. Each template includes the interview questions your AI build partner should ask you, plus the output structure for the finished file. Hand any template to Claude or ChatGPT and say "let's do this one."
+## Build Yours
+
+Fork this repo and use the templates in `/templates`. Each template includes the interview questions your AI build partner should ask you, plus the output structure for the finished file. Hand any template to Claude or ChatGPT and say "let's do this one."
+
+*A hosted interviewer that automates this whole process may return down the line. For now, this repo is the whole thing — DIY, no signup, no waiting.*
 
 ## After You Build It
 
-The portfolio is raw material. What makes it powerful is wiring it into the systems you actually use. The `/wiring` directory has guides for exposing your portfolio as an MCP resource, using it in Claude Projects, connecting it to OpenClaw agents, and more. That's the real work — and it's on you.
+The portfolio is raw material. What makes it powerful is wiring it into the systems you actually use. The `/wiring` directory has guides for exposing your portfolio as an MCP resource, and for using it in Cursor, Claude Code, Claude Projects, a Custom GPT, OpenClaw agents, plain system prompts, or a custom API layer. That's the real work — and it's on you. See [`GETTING-STARTED.md`](GETTING-STARTED.md) for the full list.
 
 ## Repo Structure
 
 ```
 personal-context-portfolio/
 ├── README.md                    ← you are here
-├── GETTING-STARTED.md           ← step-by-step for both paths
-├── templates/                   ← empty templates with interview protocols
+├── GETTING-STARTED.md           ← step-by-step guide
+├── LICENSE                      ← MIT
+├── CHANGELOG.md                 ← notable changes, by version
+├── MAINTENANCE.md               ← update cadence + conflict rules
+├── CONVENTIONS.md               ← voice + formatting decisions that apply kit-wide
+├── LOAD-PROTOCOL.md             ← minimum load + task-based context for agents
+├── templates/                   ← empty templates with interview protocols: the core ten (see
+│                                   "What's In It" above) plus four optional modules
+│                                   (unknowns.md, voice-anti-examples.md, operational-boundaries.md,
+│                                   current-state.md) and _frontmatter.md, the updated/stability/
+│                                   scope convention
+├── tools/
+│   └── validate.py              ← frontmatter + local-link validator
 ├── examples/                    ← filled-out examples for three personas
-│   ├── knowledge-worker/
+│   ├── knowledge-worker/          (canonical frontmatter example)
 │   ├── executive/
 │   └── entrepreneur/
 ├── wiring/                      ← guides for connecting your portfolio to AI tools
+│   ├── mcp-resource.md            (worked filesystem MCP config)
+│   ├── cursor.md
+│   ├── claude-code.md
+│   ├── claude-projects.md
+│   ├── chatgpt-custom-gpt.md
+│   ├── openclaw-agents.md
+│   ├── system-prompt-patterns.md
+│   └── api-layer.md
 └── interview-protocol/
-    └── agent-system-prompt.md   ← the full system prompt from the web app
+    └── agent-system-prompt.md   ← the full interviewer system prompt (core ten + optional add-on pass)
 ```
 
 ## License
 
-MIT. Fork it, customize it, use it however you want.
+MIT. See [`LICENSE`](LICENSE). Fork it, customize it, use it however you want.

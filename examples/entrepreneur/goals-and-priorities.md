@@ -1,10 +1,16 @@
+---
+updated: 2026-07-01
+stability: evolving
+scope: goals-and-priorities
+---
+
 # Goals and Priorities
 
 ## Current Goals
 
 Hit $30K/month in revenue consistently. I'm at $22-25K now but it's lumpy — great months and slow months. I need to smooth it out, which means either more retainer clients or a productized offering.
 
-Launch the consultant AI course before end of Q2. Even a small first cohort validates whether this is a real revenue line or a distraction.
+Launch the consultant AI course this summer. Even a small first cohort validates whether this is a real revenue line or a distraction.
 
 Get my agent team to the point where I'm spending less than 2 hours per week on admin and ops. Right now it's more like 5-6 hours.
 

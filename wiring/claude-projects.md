@@ -38,3 +38,4 @@ You don't have to add all ten. Match the files to the project's purpose:
 - Files in Claude Projects are static uploads. If you want automatic updates when your portfolio changes, use the MCP approach instead.
 - Each Claude Project is separate. If you have five projects, you'd need to add your files to each one individually.
 - This only works with Claude. For other AI tools, see the other wiring guides.
+- Building with Claude Code instead of the Claude web app? See [`claude-code.md`](claude-code.md) — it uses a `CLAUDE.md` pointer to live files on disk rather than static uploads.

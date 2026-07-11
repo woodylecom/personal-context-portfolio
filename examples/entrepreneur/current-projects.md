@@ -1,3 +1,9 @@
+---
+updated: 2026-07-06
+stability: evolving
+scope: current-projects
+---
+
 # Current Projects
 
 ## Vextra Brand Strategy

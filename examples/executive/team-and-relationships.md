@@ -1,4 +1,12 @@
+---
+updated: 2026-06-18
+stability: evolving
+scope: team-and-relationships
+---
+
 # Team and Relationships
+
+**Redaction tier:** full names. This is a private example pack in a shared repo — full names are OK here to keep the pattern concrete. Drop to initials or roles-only before using this as a template for your own shared or public fork; see "Redaction Tiers" in [`templates/team-and-relationships.md`](../../templates/team-and-relationships.md).
 
 ## David Nakamura
 

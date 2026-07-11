@@ -1,3 +1,9 @@
+---
+updated: 2026-07-01
+stability: evolving
+scope: goals-and-priorities
+---
+
 # Goals and Priorities
 
 ## Current Goals
@@ -6,7 +12,7 @@ Get the AI/ML team to first delivery. I need Runa's team to produce something re
 
 Complete Phase 2 of the platform migration without a customer-facing incident. This is the riskiest technical work we've done and it needs to go smoothly.
 
-Fill the remaining 7 engineering positions before Q3.
+Fill the remaining 7 engineering positions by end of Q3.
 
 ## Longer-Term Goals
 

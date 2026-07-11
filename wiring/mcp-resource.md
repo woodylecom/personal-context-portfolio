@@ -22,6 +22,34 @@ If your portfolio lives on your local machine, use the MCP filesystem server to 
 
 The exact configuration depends on your MCP client. Check your tool's documentation for how to add an MCP filesystem resource.
 
+### Worked Example: Filesystem MCP Server (Claude Desktop / Claude Code)
+
+Both Claude Desktop and Claude Code read MCP server definitions from a JSON config file. Add an entry pointing at your portfolio folder:
+
+```json
+{
+  "mcpServers": {
+    "context-portfolio": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/absolute/path/to/your/context-portfolio"
+      ]
+    }
+  }
+}
+```
+
+Where this file lives depends on the client:
+
+- **Claude Desktop:** `claude_desktop_config.json` (Settings → Developer → Edit Config).
+- **Claude Code:** `.mcp.json` in your project root for a project-scoped server, or `~/.claude.json` for a server available in every session. See [`claude-code.md`](claude-code.md) for how Claude Code combines this with `CLAUDE.md`.
+
+Restart the client after saving. The agent can now list and read files in that folder on demand — no more pasting file contents into chat.
+
+**Start narrow.** Point the server at a folder that contains just `identity.md`, `role-and-responsibilities.md`, and `current-projects.md` if you don't want to expose everything yet. You can widen the folder (or add a second server pointed at the rest of the portfolio) later. This mirrors the "start with identity + role + projects" guidance below — it applies to what you expose via MCP, not just what you paste into a prompt.
+
 **Option 2: Remote MCP server**
 
 If you want your portfolio accessible from multiple devices or by remote agents, you'll need to serve it from a remote location — a cloud server, a GitHub repo exposed via MCP, or a custom MCP server.

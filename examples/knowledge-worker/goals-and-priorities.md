@@ -1,10 +1,16 @@
+---
+updated: 2026-07-01
+stability: evolving
+scope: goals-and-priorities
+---
+
 # Goals and Priorities
 
 ## Current Goals
 
-Ship Async Messaging V2 with our three pilot health systems before end of Q2. I need it live, adopted, and showing measurable improvement in patient-provider communication volume. This is the thing that determines whether this half was a success.
+Ship Async Messaging V2 with our three pilot health systems by mid-August. I need it live, adopted, and showing measurable improvement in patient-provider communication volume. This is the thing that determines whether this half was a success.
 
-Get the notification preferences overhaul into production by end of Q2 as well — it's the other half of the engagement story.
+Get the notification preferences overhaul into production by end of August as well — it's the other half of the engagement story.
 
 ## Longer-Term Goals
 

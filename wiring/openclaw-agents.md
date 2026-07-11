@@ -1,5 +1,7 @@
 # Wiring: Connect Your Portfolio to OpenClaw Agents
 
+> **If you're not already using OpenClaw, start elsewhere.** Most people wiring up a portfolio for the first time want [`cursor.md`](cursor.md), [`claude-code.md`](claude-code.md), [`chatgpt-custom-gpt.md`](chatgpt-custom-gpt.md), or [`system-prompt-patterns.md`](system-prompt-patterns.md). This guide is for people who already run agents on OpenClaw specifically.
+
 ## What This Does
 
 OpenClaw agents can read files from connected data sources. By connecting your portfolio to OpenClaw, every agent you build can access your context — your role, your projects, your communication style — and use it to produce better, more personalized output.

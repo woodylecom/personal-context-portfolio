@@ -1,3 +1,9 @@
+---
+updated: 2026-07-06
+stability: evolving
+scope: decision-log
+---
+
 # Decision Log
 
 ## How I Make Decisions

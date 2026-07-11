@@ -1,3 +1,9 @@
+---
+updated: 2026-04-10
+stability: stable
+scope: identity
+---
+
 # Identity
 
 **Name:** Marcus Webb

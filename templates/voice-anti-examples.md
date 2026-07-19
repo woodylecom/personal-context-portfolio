@@ -4,7 +4,7 @@
 
 Paired with [`communication-style.md`](communication-style.md). That file describes your voice in the abstract; this one shows it concretely — good vs. bad, side by side. When an agent is producing content on your behalf (emails, messages, drafts) or replying to you, these pairs are the calibration set. Abstract descriptions ("I'm direct and concise") don't transfer into an agent's actual output nearly as well as seeing the exact sentence it should never write.
 
-This is one of four **optional modules** in this kit (see [`unknowns.md`](unknowns.md), [`operational-boundaries.md`](operational-boundaries.md), [`current-state.md`](current-state.md)). The core ten files are a complete portfolio on their own — this adds more precision once you want it.
+This is one of five **optional modules** in this kit (see [`unknowns.md`](unknowns.md), [`operational-boundaries.md`](operational-boundaries.md), [`current-state.md`](current-state.md), [`personal-use.md`](personal-use.md)). The core ten files are a complete portfolio on their own — this adds more precision once you want it.
 
 ---
 

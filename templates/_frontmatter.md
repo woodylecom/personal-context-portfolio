@@ -4,7 +4,7 @@
 
 Not an interview template — a shared convention for any file in your portfolio. Frontmatter lets an agent look at a file and know two things without reading it in full: how recently it was checked, and how much to trust it. This matters more as your portfolio grows past the core ten files.
 
-This convention is used by the four optional modules ([`unknowns.md`](unknowns.md), [`voice-anti-examples.md`](voice-anti-examples.md), [`operational-boundaries.md`](operational-boundaries.md), [`current-state.md`](current-state.md)) — see each one's "Output Structure" section for a worked example.
+This convention is used by the five optional modules ([`unknowns.md`](unknowns.md), [`voice-anti-examples.md`](voice-anti-examples.md), [`operational-boundaries.md`](operational-boundaries.md), [`current-state.md`](current-state.md), [`personal-use.md`](personal-use.md)) — see each one's "Output Structure" section for a worked example.
 
 ---
 
@@ -33,7 +33,7 @@ Frontmatter is opt-in per file, not mandatory across the whole portfolio — a o
 
 - Anything with a real update cadence (`current-projects.md`, `current-state.md`, `goals-and-priorities.md`).
 - Anything you want an agent to actively distrust once stale (`current-state.md` especially — see its staleness rule).
-- The four optional modules in this kit, which use it by convention. Adopt it on the core ten files too if you want the same protection everywhere.
+- The five optional modules in this kit, which use it by convention. Adopt it on the core ten files too if you want the same protection everywhere.
 
 ## How Agents Should Use It
 

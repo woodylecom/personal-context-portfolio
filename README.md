@@ -23,7 +23,7 @@ Ten files, each covering a different dimension of who you are and how you work:
 | `domain-knowledge.md` | What you know that a general-purpose AI doesn't |
 | `decision-log.md` | How you make decisions, with real examples |
 
-These ten are a complete, usable portfolio on their own. Four **optional modules** — `unknowns.md`, `voice-anti-examples.md`, `operational-boundaries.md`, `current-state.md` — add more precision once you want it; see [`LOAD-PROTOCOL.md`](LOAD-PROTOCOL.md) for what they cover and when to load them.
+These ten are a complete, usable portfolio on their own. Five **optional modules** — `unknowns.md`, `voice-anti-examples.md`, `operational-boundaries.md`, `current-state.md`, `personal-use.md` — add more precision once you want it; see [`LOAD-PROTOCOL.md`](LOAD-PROTOCOL.md) for what they cover and when to load them. `personal-use.md` is also where the kit's guidance for personal and family portfolios lives — including hard redaction rules for anything that describes a child.
 
 ## Design Principles
 
@@ -35,7 +35,7 @@ These ten are a complete, usable portfolio on their own. Four **optional modules
 
 **Portable across everything.** Works with Claude, works with ChatGPT, works with OpenClaw agents, works with whatever comes next. No vendor lock-in. It's just files.
 
-**Redact before you share.** Decide your redaction tier — full names, initials, or roles-only — before you fill out `team-and-relationships.md`, and before you fork this into anything that isn't strictly private. See "Redaction Tiers" in [`templates/team-and-relationships.md`](templates/team-and-relationships.md).
+**Redact before you share.** Decide your redaction tier — full names, initials, or roles-only — before you fill out `team-and-relationships.md`, and before you fork this into anything that isn't strictly private. See "Redaction Tiers" in [`templates/team-and-relationships.md`](templates/team-and-relationships.md). If anyone in your portfolio is a minor, the tiers aren't enough — see [`templates/personal-use.md`](templates/personal-use.md) for what never goes in at all.
 
 **Maintained, not archived.** A portfolio you write once and never touch is worse than not having one — a stale file gets acted on with confidence instead of prompting a question. See [`MAINTENANCE.md`](MAINTENANCE.md) for update cadence and what to do when the conversation and a file disagree.
 
@@ -61,10 +61,10 @@ personal-context-portfolio/
 ├── CONVENTIONS.md               ← voice + formatting decisions that apply kit-wide
 ├── LOAD-PROTOCOL.md             ← minimum load + task-based context for agents
 ├── templates/                   ← empty templates with interview protocols: the core ten (see
-│                                   "What's In It" above) plus four optional modules
+│                                   "What's In It" above) plus five optional modules
 │                                   (unknowns.md, voice-anti-examples.md, operational-boundaries.md,
-│                                   current-state.md) and _frontmatter.md, the updated/stability/
-│                                   scope convention
+│                                   current-state.md, personal-use.md) and _frontmatter.md, the
+│                                   updated/stability/scope convention
 ├── tools/
 │   └── validate.py              ← frontmatter + local-link validator
 ├── examples/                    ← filled-out examples for three personas

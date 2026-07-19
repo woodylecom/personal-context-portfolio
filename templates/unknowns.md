@@ -4,7 +4,7 @@
 
 A single place to collect what's missing, uncertain, or "TBD" across your portfolio. The goal is to keep gaps visible so they get closed over time — not lost inside longer files. This file also tells agents what NOT to assume: anything you've deliberately left out belongs here too, so an agent doesn't try to "helpfully" fill the gap with a guess.
 
-This is one of four **optional modules** in this kit (see [`voice-anti-examples.md`](voice-anti-examples.md), [`operational-boundaries.md`](operational-boundaries.md), [`current-state.md`](current-state.md)). The core ten files are a complete portfolio on their own — these add more precision once you want it.
+This is one of five **optional modules** in this kit (see [`voice-anti-examples.md`](voice-anti-examples.md), [`operational-boundaries.md`](operational-boundaries.md), [`current-state.md`](current-state.md), [`personal-use.md`](personal-use.md)). The core ten files are a complete portfolio on their own — these add more precision once you want it.
 
 ---
 

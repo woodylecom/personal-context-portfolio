@@ -28,7 +28,7 @@ This file inherits the generic completion checks defined in the workspace root `
 | Category | Target |
 | --- | --- |
 | Portability | Plain markdown only; works unmodified in Claude, ChatGPT, MCP, or a raw system prompt |
-| Modularity | Each of the ten core files + four optional modules stays independently loadable — no file assumes another was already read |
+| Modularity | Each of the ten core files + five optional modules stays independently loadable — no file assumes another was already read |
 | Voice consistency | First person by default (per `CONVENTIONS.md`); any third-person fork is consistent within itself, not mixed |
 | Redaction safety | Team/relationship content defaults to a stated redaction tier; nothing in a shipped template implies real names are required |
 | Staleness signaling | Frontmatter-bearing files carry a truthful `updated` date and correct `stability` tier — never `stable` on something that's actually `draft` |

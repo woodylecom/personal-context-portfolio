@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - A worked filesystem MCP server config example (Claude Desktop / Claude Code JSON) added to `wiring/mcp-resource.md`.
 - Optional-module example stubs (`unknowns.md`, `voice-anti-examples.md`, `operational-boundaries.md`, `current-state.md`) added to all three personas under `examples/` (`knowledge-worker`, `executive`, `entrepreneur`), each short, first-person, and in that persona's established voice.
 - A one-line redaction-tier note added to each persona's `team-and-relationships.md` example ("full names OK — private example pack; drop to initials/roles-only before using this as a template for a shared or public fork").
+- `templates/personal-use.md` — a fifth optional module: maps the work-flavored core ten to personal/family use (per-file translation table), and sets hard minors-redaction rules — a never-include list (legal names, birth dates, school/team names, age+location combinations, medical/psychological details, custody specifics, likeness/account identifiers), generalize-instead patterns with before/after examples (relationship label + broad age band), household-level phrasing for safety-critical facts, and an assume-a-public-commit calibration ("a `.gitignore` entry is not a redaction strategy"). Ships its own interview protocol and output structure like the other modules; the produced file records household labels and standing rules agents must honor.
 - Frontmatter (`updated`/`stability`/`scope`) stamped across the full `examples/knowledge-worker/` set (all ten core files plus the four new optional modules) as the canonical worked example of the convention — and, in a follow-up pass, across the `executive` and `entrepreneur` core files as well, so all three personas now demonstrate the convention end to end.
 
 ### Fixed
@@ -40,6 +41,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `GETTING-STARTED.md` tips gained a "redact before you share" tip pointing at the team-and-relationships redaction tiers.
 - `MAINTENANCE.md`'s reference to `templates/_frontmatter.md` is no longer hedged with "if present" — the file exists as of this pass.
 - `interview-protocol/agent-system-prompt.md` documents the core ten as the "exactly ten files" default and the four optional modules as a separate, skippable add-on pass — kept as-is through this merge; still useful for anyone using an AI build partner to fill out the kit even without the (dropped) hosted web app.
+- Optional-module count is now five kit-wide: `README.md` (module list, repo tree, redact-before-share principle), `GETTING-STARTED.md` (redaction tip), `LOAD-PROTOCOL.md` (new task-table row for personal/family content; ten-plus-five is fifteen), `templates/_frontmatter.md`, the four existing modules' cross-references ("one of five"), and `interview-protocol/agent-system-prompt.md` (add-on pass now offers `personal-use.md` as Optional File 5 — and runs it *first* when a portfolio covers family life, since its redaction rules bind the other interviews).
 
 ### Decisions (Lead defaults, this pass)
 

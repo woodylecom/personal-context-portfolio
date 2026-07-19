@@ -6,7 +6,7 @@ Hard rules for how agents should act when working with you, on your behalf, or o
 
 Keep domain-specific verification rules (clinical, legal, financial, technical — whatever your field requires) generic here and specific in your own notes or a persona pack. This template ships with a placeholder for that section rather than someone else's field-specific rules — don't copy clinical or legal boilerplate from an example that isn't your field.
 
-This is one of four **optional modules** in this kit (see [`unknowns.md`](unknowns.md), [`voice-anti-examples.md`](voice-anti-examples.md), [`current-state.md`](current-state.md)). The core ten files are a complete portfolio on their own — this adds more precision once you want it.
+This is one of five **optional modules** in this kit (see [`unknowns.md`](unknowns.md), [`voice-anti-examples.md`](voice-anti-examples.md), [`current-state.md`](current-state.md), [`personal-use.md`](personal-use.md)). The core ten files are a complete portfolio on their own — this adds more precision once you want it.
 
 ---
 

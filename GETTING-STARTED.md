@@ -54,7 +54,7 @@ This is the part that turns your portfolio from "a nice set of documents" into a
 
 ## Tips
 
-- **Redact before you share.** Before you fill out `team-and-relationships.md` — or fork this anywhere that isn't strictly private — decide your redaction tier (full names, initials, or roles-only). See "Redaction Tiers" in [`templates/team-and-relationships.md`](templates/team-and-relationships.md).
+- **Redact before you share.** Before you fill out `team-and-relationships.md` — or fork this anywhere that isn't strictly private — decide your redaction tier (full names, initials, or roles-only). See "Redaction Tiers" in [`templates/team-and-relationships.md`](templates/team-and-relationships.md). If your portfolio describes a minor, the tiers aren't enough — see [`templates/personal-use.md`](templates/personal-use.md) for what never goes in at all.
 - **Be specific, not aspirational.** The portfolio should describe how you actually work, not how you wish you worked. Your agents need ground truth.
 - **Don't skip the reaction pass.** When your build partner drafts a file, read it and find what's wrong. The corrections are where the real signal is. A rubber-stamped draft is a mediocre file.
 - **Short is better than long.** A good context file is one page, not five. Agents perform better with dense, high-signal context than with sprawling documents.

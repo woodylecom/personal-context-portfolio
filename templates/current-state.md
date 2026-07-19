@@ -4,7 +4,7 @@
 
 A living weekly snapshot — what's actually happening right now, as opposed to the slower-moving files ([`current-projects.md`](current-projects.md), [`goals-and-priorities.md`](goals-and-priorities.md)). This is the file most likely to go stale, and a stale snapshot actively misleads rather than just under-informing. If you're not going to update it on a real cadence, don't build it — a missing file is more honest than a six-month-old one.
 
-This is one of four **optional modules** in this kit (see [`unknowns.md`](unknowns.md), [`voice-anti-examples.md`](voice-anti-examples.md), [`operational-boundaries.md`](operational-boundaries.md)). The core ten files are a complete portfolio on their own — this adds more precision once you want it.
+This is one of five **optional modules** in this kit (see [`unknowns.md`](unknowns.md), [`voice-anti-examples.md`](voice-anti-examples.md), [`operational-boundaries.md`](operational-boundaries.md), [`personal-use.md`](personal-use.md)). The core ten files are a complete portfolio on their own — this adds more precision once you want it.
 
 ---
 

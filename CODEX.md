@@ -8,7 +8,7 @@ Project `AGENTS.md` is canonical when present. Otherwise follow the workspace ro
 
 ## 1. Project Overview
 
-Personal_Context_Portfolio is a **public, forkable, MIT-licensed template kit** — not running software. The deliverable is markdown: ten core templates + four optional modules, interview protocols, three filled example personas, wiring guides for connecting a finished portfolio into various AI tools, and one Python validator (`tools/validate.py`, stdlib-only, no dependencies to install).
+Personal_Context_Portfolio is a **public, forkable, MIT-licensed template kit** — not running software. The deliverable is markdown: ten core templates + five optional modules, interview protocols, three filled example personas, wiring guides for connecting a finished portfolio into various AI tools, and one Python validator (`tools/validate.py`, stdlib-only, no dependencies to install).
 
 It is also a **dependency of `Companion_Template`** (the Second-Nature project) — this kit is the intended "who the user is" onboarding-interview layer that project consumes. Changes here can have downstream effects there.
 
@@ -61,7 +61,7 @@ If the project's extended control docs are missing, fall back to root canonicals
 ## 4. Project-Specific Guidance
 
 - Treat the ten core templates (`templates/*.md`) as the source of truth for structure; the three example personas (`examples/knowledge-worker/`, `examples/executive/`, `examples/entrepreneur/`) are downstream and must stay consistent with them.
-- The four optional modules (`unknowns.md`, `voice-anti-examples.md`, `operational-boundaries.md`, `current-state.md`) follow the same frontmatter and referencing convention as the core ten — if you add a new optional module, wire it into `README.md`'s module list and `LOAD-PROTOCOL.md`'s task table, not just `templates/`.
+- The five optional modules (`unknowns.md`, `voice-anti-examples.md`, `operational-boundaries.md`, `current-state.md`, `personal-use.md`) follow the same frontmatter and referencing convention as the core ten — if you add a new optional module, wire it into `README.md`'s module list and `LOAD-PROTOCOL.md`'s task table, not just `templates/`.
 - `tools/validate.py` checks frontmatter shape (`updated`/`stability`/`scope`) and local links — it does not check voice, redaction discipline, or whether an example is still representative. Those need a direct read.
 - When manual follow-up is required, recommend tool, model family, reasoning mode, and reasoning effort.
 

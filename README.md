@@ -12,18 +12,18 @@ Ten files, each covering a different dimension of who you are and how you work:
 
 | File | What It Captures |
 |------|-----------------|
-| `identity.md` | Who you are in one page — the file an agent reads if it can only read one |
-| `role-and-responsibilities.md` | What your weeks actually look like, not what your job description says |
-| `current-projects.md` | Active workstreams, status, priority, what done looks like |
-| `team-and-relationships.md` | Key people, how you interact, what they need from you |
-| `tools-and-systems.md` | Your stack, your setup, what connects to what |
-| `communication-style.md` | How you write, how you want things written for you |
-| `goals-and-priorities.md` | What you're optimizing for and what you're deliberately ignoring |
-| `preferences-and-constraints.md` | Hard rules, strong opinions, things any agent should respect |
-| `domain-knowledge.md` | What you know that a general-purpose AI doesn't |
-| `decision-log.md` | How you make decisions, with real examples |
+| [`identity.md`](templates/identity.md) | Who you are in one page — the file an agent reads if it can only read one |
+| [`role-and-responsibilities.md`](templates/role-and-responsibilities.md) | What your weeks actually look like, not what your job description says |
+| [`current-projects.md`](templates/current-projects.md) | Active workstreams, status, priority, what done looks like |
+| [`team-and-relationships.md`](templates/team-and-relationships.md) | Key people, how you interact, what they need from you |
+| [`tools-and-systems.md`](templates/tools-and-systems.md) | Your stack, your setup, what connects to what |
+| [`communication-style.md`](templates/communication-style.md) | How you write, how you want things written for you |
+| [`goals-and-priorities.md`](templates/goals-and-priorities.md) | What you're optimizing for and what you're deliberately ignoring |
+| [`preferences-and-constraints.md`](templates/preferences-and-constraints.md) | Hard rules, strong opinions, things any agent should respect |
+| [`domain-knowledge.md`](templates/domain-knowledge.md) | What you know that a general-purpose AI doesn't |
+| [`decision-log.md`](templates/decision-log.md) | How you make decisions, with real examples |
 
-These ten are a complete, usable portfolio on their own. Five **optional modules** — `unknowns.md`, `voice-anti-examples.md`, `operational-boundaries.md`, `current-state.md`, `personal-use.md` — add more precision once you want it; see [`LOAD-PROTOCOL.md`](LOAD-PROTOCOL.md) for what they cover and when to load them. `personal-use.md` is also where the kit's guidance for personal and family portfolios lives — including hard redaction rules for anything that describes a child.
+These ten are a complete, usable portfolio on their own. Five **optional modules** — [`unknowns.md`](templates/unknowns.md), [`voice-anti-examples.md`](templates/voice-anti-examples.md), [`operational-boundaries.md`](templates/operational-boundaries.md), [`current-state.md`](templates/current-state.md), [`personal-use.md`](templates/personal-use.md) — add more precision once you want it; see [`LOAD-PROTOCOL.md`](LOAD-PROTOCOL.md) for what they cover and when to load them. `templates/personal-use.md` is also where the kit's guidance for personal and family portfolios lives — including hard redaction rules for anything that describes a child.
 
 ## Design Principles
 
@@ -35,7 +35,7 @@ These ten are a complete, usable portfolio on their own. Five **optional modules
 
 **Portable across everything.** Works with Claude, works with ChatGPT, works with OpenClaw agents, works with whatever comes next. No vendor lock-in. It's just files.
 
-**Redact before you share.** Decide your redaction tier — full names, initials, or roles-only — before you fill out `team-and-relationships.md`, and before you fork this into anything that isn't strictly private. See "Redaction Tiers" in [`templates/team-and-relationships.md`](templates/team-and-relationships.md). If anyone in your portfolio is a minor, the tiers aren't enough — see [`templates/personal-use.md`](templates/personal-use.md) for what never goes in at all.
+**Redact before you share.** Decide your redaction tier — full names, initials, or roles-only — before you fill out `templates/team-and-relationships.md`, and before you fork this into anything that isn't strictly private. See "Redaction Tiers" in [`templates/team-and-relationships.md`](templates/team-and-relationships.md). If anyone in your portfolio is a minor, the tiers aren't enough — see [`templates/personal-use.md`](templates/personal-use.md) for what never goes in at all.
 
 **Maintained, not archived.** A portfolio you write once and never touch is worse than not having one — a stale file gets acted on with confidence instead of prompting a question. See [`MAINTENANCE.md`](MAINTENANCE.md) for update cadence and what to do when the conversation and a file disagree.
 

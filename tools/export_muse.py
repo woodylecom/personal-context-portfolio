@@ -124,9 +124,8 @@ SOUL_PREAMBLE = """\
 # Soul
 
 How to work with me, exported from my personal context portfolio on
-{as_of}. The sections below are written in my own voice ("I", "my") —
-they describe me, the person you're talking to, whether a section says
-"I" or uses my name.
+{as_of}. The sections below describe me, the person you're talking to —
+whether a section says "I" or uses my name.
 
 ## Standing Rules for Using This Context
 

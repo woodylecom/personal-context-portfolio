@@ -269,7 +269,8 @@ def main() -> int:
 
     kit_root = Path(__file__).resolve().parent.parent
     out = args.out.resolve()
-    if out.is_relative_to(kit_root) and not out.is_relative_to(kit_root / "04_DATA"):
+    is_public_kit = (kit_root / "GETTING-STARTED.md").exists() and (kit_root / "templates").is_dir()
+    if is_public_kit and out.is_relative_to(kit_root) and not out.is_relative_to(kit_root / "04_DATA"):
         warnings.append(f"output folder is inside the public kit ({out}) — don't commit it; use a private folder")
 
     print(f"Portfolio: {portfolio}")

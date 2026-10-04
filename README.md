@@ -47,7 +47,7 @@ Fork this repo and use the templates in `/templates`. Each template includes the
 
 ## After You Build It
 
-The portfolio is raw material. What makes it powerful is wiring it into the systems you actually use. The `/wiring` directory has guides for exposing your portfolio as an MCP resource, and for using it in Cursor, Claude Code, Claude Projects, a Custom GPT, OpenClaw agents, plain system prompts, or a custom API layer. That's the real work — and it's on you. See [`GETTING-STARTED.md`](GETTING-STARTED.md) for the full list.
+The portfolio is raw material. What makes it powerful is wiring it into the systems you actually use. The `/wiring` directory has guides for exposing your portfolio as an MCP resource, and for using it in Cursor, Claude Code, Claude Projects, a Custom GPT, Meta Muse, OpenClaw agents, plain system prompts, or a custom API layer. That's the real work — and it's on you. See [`GETTING-STARTED.md`](GETTING-STARTED.md) for the full list.
 
 ## Repo Structure
 
@@ -66,7 +66,8 @@ personal-context-portfolio/
 │                                   current-state.md, personal-use.md) and _frontmatter.md, the
 │                                   updated/stability/scope convention
 ├── tools/
-│   └── validate.py              ← frontmatter + local-link validator
+│   ├── validate.py              ← frontmatter + local-link validator
+│   └── export_muse.py           ← builds Meta Muse Memory.md + Soul.md from a filled portfolio
 ├── examples/                    ← filled-out examples for three personas
 │   ├── knowledge-worker/          (canonical frontmatter example)
 │   ├── executive/
@@ -77,6 +78,7 @@ personal-context-portfolio/
 │   ├── claude-code.md
 │   ├── claude-projects.md
 │   ├── chatgpt-custom-gpt.md
+│   ├── meta-muse.md
 │   ├── openclaw-agents.md
 │   ├── system-prompt-patterns.md
 │   └── api-layer.md

@@ -44,6 +44,7 @@ The `/wiring` directory has guides for:
 - Using it in [Claude Code](wiring/claude-code.md) — `CLAUDE.md` + selective reads
 - Using it in [Claude Projects](wiring/claude-projects.md)
 - Using it in a [ChatGPT Custom GPT](wiring/chatgpt-custom-gpt.md) — including the character-limited Custom Instructions case
+- Using it in [Meta Muse](wiring/meta-muse.md) — `tools/export_muse.py` builds its `Memory.md` + `Soul.md`
 - Connecting it to [OpenClaw agents](wiring/openclaw-agents.md)
 - Copy-paste [system prompt patterns](wiring/system-prompt-patterns.md) for anything else
 - Building an [API layer](wiring/api-layer.md), if you need it (most people don't)

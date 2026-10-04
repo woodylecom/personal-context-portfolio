@@ -15,6 +15,9 @@ See wiring/meta-muse.md for where these go in the Muse app and how the
 file split was chosen.
 
 What the export does, per source file:
+  0. Matches files by name, with or without a numeric sort prefix
+     (identity.md, 01-identity.md and 06a-voice-anti-examples.md all work).
+     Files it doesn't recognize are listed as not exported.
   1. Skips files that are still blank templates (they contain an
      "Interview Protocol" section) — those are questions, not context.
   2. Strips the YAML frontmatter, but keeps its information as a visible
@@ -89,6 +92,7 @@ EVOLVING_MAX_AGE_DAYS = 30
 
 FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 FIELD_RE = re.compile(r"^(\w+):\s*(.+?)\s*$", re.MULTILINE)
+PREFIX_RE = re.compile(r"^\d+[a-z]?[-_]")
 HEADING_RE = re.compile(r"^(#{1,5})(\s)", re.MULTILINE)
 TEMPLATE_MARKER_RE = re.compile(r"^#+\s*Interview Protocol\b", re.MULTILINE | re.IGNORECASE)
 
@@ -121,7 +125,8 @@ SOUL_PREAMBLE = """\
 
 How to work with me, exported from my personal context portfolio on
 {as_of}. The sections below are written in my own voice ("I", "my") —
-they describe me, the person you're talking to.
+they describe me, the person you're talking to, whether a section says
+"I" or uses my name.
 
 ## Standing Rules for Using This Context
 
@@ -157,14 +162,15 @@ def redaction_findings(name: str, body: str, line_offset: int) -> list[str]:
     for lineno, line in enumerate(body.splitlines(), start=line_offset + 1):
         for rule, pattern in REDACTION_RULES:
             if pattern.search(line):
-                findings.append(f"{name}.md:{lineno}: {rule} — check against templates/personal-use.md")
+                findings.append(f"{name}:{lineno}: {rule} — check against templates/personal-use.md")
     return findings
 
 
 def build_section(name: str, path: Path, as_of: date, warnings: list[str]) -> str | None:
+    label = path.name
     text = path.read_text(encoding="utf-8")
     if TEMPLATE_MARKER_RE.search(text):
-        warnings.append(f"{name}.md: still a blank template (has an Interview Protocol section) — skipped")
+        warnings.append(f"{label}: still a blank template (has an Interview Protocol section) — skipped")
         return None
 
     fm, body = parse_frontmatter(text)
@@ -175,15 +181,15 @@ def build_section(name: str, path: Path, as_of: date, warnings: list[str]) -> st
     if updated:
         age = age_in_days(updated, as_of)
         if age is None:
-            warnings.append(f"{name}.md: 'updated' is not YYYY-MM-DD ({updated!r})")
+            warnings.append(f"{label}: 'updated' is not YYYY-MM-DD ({updated!r})")
         elif name == "current-state" and age > CURRENT_STATE_MAX_AGE_DAYS:
-            warnings.append(f"{name}.md: {age} days old (limit {CURRENT_STATE_MAX_AGE_DAYS}) — refresh before exporting")
-        elif stability == "evolving" and age > EVOLVING_MAX_AGE_DAYS:
-            warnings.append(f"{name}.md: evolving file is {age} days old — reconfirm it")
+            warnings.append(f"{label}: {age} days old (limit {CURRENT_STATE_MAX_AGE_DAYS}) — refresh before exporting")
+        elif stability in ("evolving", "living") and age > EVOLVING_MAX_AGE_DAYS:
+            warnings.append(f"{label}: {stability} file is {age} days old — reconfirm it")
     elif name in ("current-state", "current-projects"):
-        warnings.append(f"{name}.md: no 'updated' date — Muse can't tell how current it is")
+        warnings.append(f"{label}: no 'updated' date — Muse can't tell how current it is")
 
-    warnings.extend(redaction_findings(name, body, line_offset))
+    warnings.extend(redaction_findings(label, body, line_offset))
 
     body = demote_headings(body.strip())
     if updated:
@@ -196,12 +202,20 @@ def build_section(name: str, path: Path, as_of: date, warnings: list[str]) -> st
     return body
 
 
-def build_output(preamble: str, names: list[str], portfolio: Path, as_of: date,
+def index_portfolio(portfolio: Path) -> dict[str, Path]:
+    """Map canonical names (identity, ...) to files, ignoring numeric sort prefixes."""
+    index: dict[str, Path] = {}
+    for path in sorted(portfolio.glob("*.md")):
+        index.setdefault(PREFIX_RE.sub("", path.stem).lower(), path)
+    return index
+
+
+def build_output(preamble: str, names: list[str], files: dict[str, Path], as_of: date,
                  warnings: list[str]) -> tuple[str, list[str]]:
     sections, used = [], []
     for name in names:
-        path = portfolio / f"{name}.md"
-        if not path.exists():
+        path = files.get(name)
+        if path is None:
             continue
         section = build_section(name, path, as_of, warnings)
         if section:
@@ -236,13 +250,14 @@ def main() -> int:
     errors: list[str] = []
     warnings: list[str] = []
 
-    missing = sorted(n for n in REQUIRED_FILES if not (portfolio / f"{n}.md").exists())
+    files = index_portfolio(portfolio)
+    missing = sorted(n for n in REQUIRED_FILES if n not in files)
     if missing:
         errors.append(f"missing minimum-load file(s): {', '.join(m + '.md' for m in missing)} (see LOAD-PROTOCOL.md)")
 
     memory_names = MEMORY_FILES + [n for n in OPTIONAL_MEMORY_FILES if n in args.include]
-    memory, memory_used = build_output(MEMORY_PREAMBLE, memory_names, portfolio, as_of, warnings)
-    soul, soul_used = build_output(SOUL_PREAMBLE, SOUL_FILES, portfolio, as_of, warnings)
+    memory, memory_used = build_output(MEMORY_PREAMBLE, memory_names, files, as_of, warnings)
+    soul, soul_used = build_output(SOUL_PREAMBLE, SOUL_FILES, files, as_of, warnings)
 
     for req in sorted(REQUIRED_FILES):
         if req not in memory_used + soul_used and req not in missing:
@@ -260,6 +275,9 @@ def main() -> int:
     print(f"Portfolio: {portfolio}")
     print(f"Memory.md sections: {', '.join(memory_used) or '(none)'}")
     print(f"Soul.md sections:   {', '.join(soul_used) or '(none)'}")
+    skipped = sorted(p.name for n, p in files.items() if n not in memory_used + soul_used)
+    if skipped:
+        print(f"Not exported:       {', '.join(skipped)}")
 
     if errors:
         print(f"\n{len(errors)} error(s):")

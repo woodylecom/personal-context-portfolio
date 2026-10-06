@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - `wiring/meta-muse.md` — wiring guide for Meta Muse: how Muse holds context (with sources and a confidence rating per claim), which portfolio files map to its `Memory.md` vs `Soul.md`, step-by-step export and paste, and how to keep Muse's copy in sync with the portfolio.
+- `tools/export_muse.py`: `export:omit` blocks (kept in the portfolio, left out of the export; unclosed or inline markers are errors and nothing is written), unfilled `*[fill in: ...]*` placeholders dropped, links to local files turned into plain text, and a warning for in-text dates more than 60 days older than the export, which catches stale facts sitting under a freshly bumped `updated` stamp.
 - `tools/export_muse.py` — builds Muse's `Memory.md` and `Soul.md` from a filled-out portfolio: skips blank templates, turns frontmatter into visible "As of" lines, warns on stale files and on likely minors/medical/contact/ID details (file and line only, never the text), checks soft size budgets, and warns when output lands inside the public kit. `--strict` fails on any warning. Accepts numbered file names (`01-identity.md`), third-person files, and `stability: living`.
 - `LICENSE` (MIT) to back up the license claim already in `README.md`.
 - `.gitignore` covering common OS, editor, and tooling artifacts.

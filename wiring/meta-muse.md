@@ -39,16 +39,32 @@ Only `identity.md` and `preferences-and-constraints.md` are required — the [mi
    - blank templates it skipped,
    - stale files (`current-state.md` older than 10 days; other `evolving` files older than 30 — see [`MAINTENANCE.md`](../MAINTENANCE.md)),
    - lines that look like minors, medical, contact or government-ID details (heuristic — it prints file and line, never the text),
+   - dates written inside the text that are more than 60 days old,
    - outputs over the soft size budget (`--memory-budget`, `--soul-budget`; defaults 8,000 and 4,000 characters).
    Fix the *source* file, then re-run. Don't hand-edit the output — the next export will overwrite it.
 4. **Read both output files yourself** before they leave your machine. The redaction check is a safety net, not a guarantee.
 5. **Paste into Muse.** Open Assistant → Identity → Memory and replace the contents of `Memory.md`; do the same for `Soul.md`. Keep a copy of whatever Muse had there first.
 6. **Test it.** Ask Muse to do something it would get wrong without context — draft an email in your voice, plan your week around your hard constraints. Compare against a fresh, context-free chat.
 
+## Keeping Things Out of the Export
+
+Some passages belong in your portfolio but not with a third party — candid notes about a manager, staffing detail, local file paths. Wrap them so local tools still see them but the export leaves them out:
+
+```
+<!-- export:omit -->
+Anything here stays in the portfolio and never reaches Memory.md or Soul.md.
+<!-- /export:omit -->
+```
+
+Each marker goes on its own line. An unclosed block or a marker in the middle of a line is an error, and the exporter writes nothing until it's fixed. Unfilled template placeholders (`*[fill in: ...]*`) are dropped automatically, and links to other portfolio files become plain text.
+
+Omitting is not updating: wrapping a stale section hides it, but the facts around it still need to be current.
+
 ## Keeping It Accurate
 
 - **The portfolio is the source of truth; Muse is a copy.** Muse also writes its own memories from conversations and Connectors. When it learns something new about you, update the portfolio file and re-export rather than letting the two drift.
 - **Re-export on the portfolio's cadence** — weekly if you rely on `current-state.md` / `current-projects.md`, otherwise after any real change.
+- **Only bump `updated` after reviewing the whole file.** A one-line edit that refreshes the stamp makes every older fact in that file look current. The exporter also warns about dates written inside the text ("as of 2026-04-22", or a date cell in a table) that are more than 60 days old, whatever the stamp says.
 - **Dates survive the paste.** Frontmatter doesn't, so the exporter turns each file's `updated`/`stability` into a visible "As of …" line, and `Soul.md` tells Muse that the conversation beats a stale file — and to say so, rather than silently work around it (the [conflict rule](../MAINTENANCE.md)).
 
 ## Tips

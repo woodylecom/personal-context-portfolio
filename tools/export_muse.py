@@ -36,6 +36,17 @@ What the export does, per source file:
   6. Reports each output's size against a soft character budget. Meta does
      not publish a limit; the defaults are conservative guesses — see
      wiring/meta-muse.md.
+  7. Leaves out anything between <!-- export:omit --> and
+     <!-- /export:omit --> (each marker on its own line), so a passage can
+     stay in your portfolio for local tools without going to Muse. An
+     unclosed or stray marker is an error and nothing is written.
+  8. Drops unfilled template placeholders (*[fill in: ...]*) and turns
+     links to other portfolio files or local paths into plain text, since
+     neither means anything once pasted into Muse.
+  9. Warns about dates written inside the text ("as of 2026-04-22", or a
+     date cell in a table) that are much older than the export. A file's
+     `updated` stamp can be refreshed for a one-line edit while older facts
+     sit underneath it; this catches the facts the stamp would hide.
 
 Usage:
     python tools/export_muse.py PORTFOLIO_DIR [--out DIR] [--as-of YYYY-MM-DD]
@@ -89,12 +100,22 @@ DEFAULT_SOUL_BUDGET = 4000
 
 CURRENT_STATE_MAX_AGE_DAYS = 10  # templates/current-state.md staleness rule
 EVOLVING_MAX_AGE_DAYS = 30
+INTEXT_DATE_MAX_AGE_DAYS = 60
 
 FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 FIELD_RE = re.compile(r"^(\w+):\s*(.+?)\s*$", re.MULTILINE)
 PREFIX_RE = re.compile(r"^\d+[a-z]?[-_]")
 HEADING_RE = re.compile(r"^(#{1,5})(\s)", re.MULTILINE)
 TEMPLATE_MARKER_RE = re.compile(r"^#+\s*Interview Protocol\b", re.MULTILINE | re.IGNORECASE)
+OMIT_OPEN_RE = re.compile(r"^\s*<!--\s*export:omit\s*-->\s*$")
+OMIT_CLOSE_RE = re.compile(r"^\s*<!--\s*/export:omit\s*-->\s*$")
+OMIT_ANY_RE = re.compile(r"<!--\s*/?export:omit\s*-->")
+PLACEHOLDER_RE = re.compile(r"\s*\*\[fill in:[^\]]*\]\*")
+BARE_BULLET_RE = re.compile(r"^\s*(?:[-*]|\d+\.)\s*$")
+LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)\s]+)\)")
+BLANK_RUN_RE = re.compile(r"\n{3,}")
+# "as of 2026-04-22", "As of: 2026-04-22", or a table row ending in a date cell.
+INTEXT_DATE_RE = re.compile(r"(?:\bas of:?\s*|\|\s*)(\d{4}-\d{2}-\d{2})(?=\s*(?:\||\)|,|\.|;|\s|$))", re.IGNORECASE)
 
 # Heuristic redaction checks: (rule name, pattern). Kept deliberately
 # narrow so warnings stay readable; they flag lines for a human to check.
@@ -156,6 +177,62 @@ def age_in_days(updated: str, as_of: date) -> int | None:
         return None
 
 
+def blank_omitted(label: str, body: str, line_offset: int, errors: list[str]) -> str:
+    """Blank every line inside an export:omit block, markers included.
+
+    Lines are blanked rather than deleted so redaction findings, which run
+    after this, still report the line number of the source file.
+    """
+    lines, inside, opened_at = body.split("\n"), False, 0
+    for i, line in enumerate(lines):
+        lineno = line_offset + 1 + i
+        if OMIT_OPEN_RE.match(line):
+            if inside:
+                errors.append(f"{label}:{lineno}: export:omit opened again before line {opened_at}'s block closed")
+            inside, opened_at = True, lineno
+            lines[i] = ""
+        elif OMIT_CLOSE_RE.match(line):
+            if not inside:
+                errors.append(f"{label}:{lineno}: /export:omit with no open block")
+            inside = False
+            lines[i] = ""
+        elif OMIT_ANY_RE.search(line):
+            errors.append(f"{label}:{lineno}: export:omit marker must be on a line of its own")
+        elif inside:
+            lines[i] = ""
+    if inside:
+        errors.append(f"{label}:{opened_at}: export:omit block never closed")
+    return "\n".join(lines)
+
+
+def localize(body: str) -> str:
+    """Drop placeholders, unlink local references, collapse leftover blank runs."""
+    def unlink(m: re.Match) -> str:
+        target = m.group(2)
+        return m.group(0) if target.startswith(("http://", "https://", "mailto:")) else m.group(1)
+
+    out = []
+    for line in body.split("\n"):
+        had_placeholder = "*[fill in:" in line
+        line = LINK_RE.sub(unlink, PLACEHOLDER_RE.sub("", line))
+        if had_placeholder and (not line.strip() or BARE_BULLET_RE.match(line)):
+            continue
+        out.append(line.rstrip())
+    return BLANK_RUN_RE.sub("\n\n", "\n".join(out))
+
+
+def stale_intext_dates(label: str, body: str, line_offset: int, as_of: date) -> list[str]:
+    """Flag in-text dates far older than the export, one warning per line."""
+    findings = []
+    for lineno, line in enumerate(body.splitlines(), start=line_offset + 1):
+        ages = [age for d in INTEXT_DATE_RE.findall(line)
+                if (age := age_in_days(d, as_of)) is not None and age > INTEXT_DATE_MAX_AGE_DAYS]
+        if ages:
+            findings.append(f"{label}:{lineno}: in-text date is {max(ages)} days old — reconfirm the fact, "
+                            "whatever the file's 'updated' stamp says")
+    return findings
+
+
 def redaction_findings(name: str, body: str, line_offset: int) -> list[str]:
     findings = []
     for lineno, line in enumerate(body.splitlines(), start=line_offset + 1):
@@ -165,7 +242,8 @@ def redaction_findings(name: str, body: str, line_offset: int) -> list[str]:
     return findings
 
 
-def build_section(name: str, path: Path, as_of: date, warnings: list[str]) -> str | None:
+def build_section(name: str, path: Path, as_of: date, warnings: list[str],
+                  errors: list[str]) -> str | None:
     label = path.name
     text = path.read_text(encoding="utf-8")
     if TEMPLATE_MARKER_RE.search(text):
@@ -188,9 +266,11 @@ def build_section(name: str, path: Path, as_of: date, warnings: list[str]) -> st
     elif name in ("current-state", "current-projects"):
         warnings.append(f"{label}: no 'updated' date — Muse can't tell how current it is")
 
+    body = blank_omitted(label, body, line_offset, errors)
     warnings.extend(redaction_findings(label, body, line_offset))
+    warnings.extend(stale_intext_dates(label, body, line_offset, as_of))
 
-    body = demote_headings(body.strip())
+    body = demote_headings(localize(body).strip())
     if updated:
         stamp = f"_As of {updated}" + (f" ({stability})" if stability else "") + "_"
         if stability == "draft":
@@ -210,13 +290,13 @@ def index_portfolio(portfolio: Path) -> dict[str, Path]:
 
 
 def build_output(preamble: str, names: list[str], files: dict[str, Path], as_of: date,
-                 warnings: list[str]) -> tuple[str, list[str]]:
+                 warnings: list[str], errors: list[str]) -> tuple[str, list[str]]:
     sections, used = [], []
     for name in names:
         path = files.get(name)
         if path is None:
             continue
-        section = build_section(name, path, as_of, warnings)
+        section = build_section(name, path, as_of, warnings, errors)
         if section:
             sections.append(section)
             used.append(name)
@@ -255,8 +335,8 @@ def main() -> int:
         errors.append(f"missing minimum-load file(s): {', '.join(m + '.md' for m in missing)} (see LOAD-PROTOCOL.md)")
 
     memory_names = MEMORY_FILES + [n for n in OPTIONAL_MEMORY_FILES if n in args.include]
-    memory, memory_used = build_output(MEMORY_PREAMBLE, memory_names, files, as_of, warnings)
-    soul, soul_used = build_output(SOUL_PREAMBLE, SOUL_FILES, files, as_of, warnings)
+    memory, memory_used = build_output(MEMORY_PREAMBLE, memory_names, files, as_of, warnings, errors)
+    soul, soul_used = build_output(SOUL_PREAMBLE, SOUL_FILES, files, as_of, warnings, errors)
 
     for req in sorted(REQUIRED_FILES):
         if req not in memory_used + soul_used and req not in missing:
